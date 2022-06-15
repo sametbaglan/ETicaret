@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "GeneralError";
+      Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+<h1></h1>
+<span class="clearfix title">
+    <span class="number left">Error</span>&nbsp <span class="text-danger">@ViewBag.ErrorCode</span><br /><span class="text">@ViewBag.ErrorMessage</span>
+</span>
+<div class="body" style="padding-top:10px;">
+    <div class="margin-top-30">
+        <a href="javascript:history.go(-1)" class="btn btn-default btn-block"><i class="fa fa-arrow-left"></i> <span>Geriye Dön</span></a>
+        <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-block"><i class="fa fa-home"></i> <span>Login</span></a>
+    </div>
+</div>

@@ -1,0 +1,263 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        .item {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-pay {
+            background-color: #C800Da;
+            border: 0;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .fa-ticket {
+            color: #0e1fa1;
+        }
+    </style>
+</head>
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Sepet </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Shoping Cart Section Begin -->
+<section class="shoping-cart spad">
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-7">
+                <div class="border border-gainsboro p-3">
+                    <h2 class="h6 text-uppercase mb-0">SEPET (@Model.orderModel.CartItems.Count Items): <strong class="cart-total">@Model.fiyat</strong></h2>
+                </div>
+                @if (Model.orderModel.CartItems.Count > 0)
+                {
+                    @foreach (var item in Model.orderModel.CartItems)
+                    {
+                        <div class="border border-gainsboro p-3 mt-3 clearfix item">
+                            <div class="text-lg-left">
+                                    <img src="~/images/@item.Product.ImageUrl" width="80" />
+                            </div>
+                            <div class="col-lg-5 col-5 text-lg-left">
+                                <h3 class="h6 mb-0">
+                                    @item.Product.ProductName <br>
+                                    @if (item.Product.ReducedPrice > 0)
+                                    {
+                                        <small id="price"><del>@item.Product.Price</del></small>
+                                        <small id="price">@item.Product.ReducedPrice TL</small>
+                                    }
+                                    else
+                                    {
+                                        <small id="price">@item.Product.Price TL</small>
+                                    }
+                                </h3>
+                            </div>
+
+                            @if (item.Product.ReducedPrice > 0)
+                            {
+                                <div class="product-price d-none">@item.Product.ReducedPrice </div>
+                            }
+                            else
+                            {
+                                <div class="product-price d-none">@item.Product.Price</div>
+                            }
+                            <div style="margin-right:-47px;" class="pass-quantity col-lg-3 col-md-4 col-sm-3">
+                                <label for="pass-quantity" class="pass-quantity">Adet</label>
+                                <input class="form-control" type="number" value="@item.Quantity" min="1">
+                            </div>
+                            <div class="col-lg-2 col-md-1 col-sm-2 product-line-price pt-4">
+                                <span class="product-line-price">
+                                </span>
+                            </div>
+                            <div class="remove-item pt-4">
+
+                                <form action="/Cart/DeleteCartItem/" method="post" style="display:inline">
+                                    <input type="hidden" name="productid" value="@item.ProductID" />
+                                    <button type="submit" class="remove-product btn-light">Sil</button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-5 totals">
+                <div class="border border-gainsboro px-3">
+                    <div class="border-bottom border-gainsboro">
+                        <p class="text-uppercase mb-0 py-3"><strong>Sipariş Özeti</strong></p>
+                    </div>
+                    @if (Model.orderModel.CartItems.Count == 0)
+                    {
+                        <div class="totals-item d-flex align-items-center justify-content-between mt-3">
+                            <p class="text-uppercase">Fiyat</p>
+                            <p class="totals-value" id="cart-subtotal"> 0</p>
+                        </div>
+                        <div class="totals-item d-flex align-items-center justify-content-between">
+                            <p class="text-uppercase">Kargo </p>
+                            <p class="totals-value" id="cart-tax">0</p>
+                        </div>
+                        <div class="totals-item totals-item-total d-flex align-items-center justify-content-between mt-3 pt-3 border-top border-gainsboro">
+                            <p class="text-uppercase"><strong>TOPLAM</strong></p>
+                            <p class="totals-value font-weight-bold cart-total">0</p>
+                        </div>
+                    }
+                    else
+                    {
+                        @if (Model.fiyat >= 100)
+                        {
+                            <div class="totals-item d-flex align-items-center justify-content-between mt-3">
+                                <p class="text-uppercase">Fiyat</p>
+                                <p class="totals-value" id="cart-subtotal"> @Model.fiyat</p>
+                            </div>
+                            <div class="totals-item d-flex align-items-center justify-content-between">
+                                <p class="text-uppercase">Kargo </p>
+                                <p class="totals-value" id="cart-tax">ÜCRETSİZ</p>
+                            </div>
+                            <div class="totals-item totals-item-total d-flex align-items-center justify-content-between mt-3 pt-3 border-top border-gainsboro">
+                                <p class="text-uppercase"><strong>TOPLAM</strong></p>
+                                <p class="totals-value font-weight-bold cart-total">@Model.fiyat</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="totals-item d-flex align-items-center justify-content-between mt-3">
+                                <p class="text-uppercase">Fiyat</p>
+                                <p class="totals-value" id="cart-subtotal">@Model.fiyat</p>
+                            </div>
+                            <div class="totals-item d-flex align-items-center justify-content-between">
+                                <p class="text-uppercase">Kargo </p>
+                                <p class="totals-value" id="cart-tax">50 TL</p>
+                            </div>
+                            <div class="totals-item totals-item-total d-flex align-items-center justify-content-between mt-3 pt-3 border-top border-gainsboro">
+                                <p class="text-uppercase"><strong>Total</strong></p>
+                                <p class="totals-value font-weight-bold cart-total">@(Model.fiyat+50)</p>
+                            </div>
+                        }
+                    }
+
+                </div>
+                @if (Model.fiyat >= 100)
+                {
+                    <a href="/Checkout/PaymentProccesing" class="mt-3 btn btn-pay w-100 d-flex justify-content-between btn-lg rounded-0">Pay Now <span class="totals-value cart-total">@Model.fiyat TL</span></a>
+                }
+                else if (Model.orderModel.CartItems.Count == 0)
+                {
+                    <a href="/Checkout/PaymentProccesing" class="mt-3 btn btn-pay w-100 d-flex justify-content-between btn-lg rounded-0">Pay Now <span class="totals-value cart-total"></span></a>
+                }
+                else
+                {
+                    <a href="/Checkout/PaymentProccesing" class="mt-3 btn btn-pay w-100 d-flex justify-content-between btn-lg rounded-0">Pay Now <span class="totals-value cart-total">@(Model.fiyat+50) TL</span></a>
+                }
+            </div>
+
+        </div>
+    </div><!-- container -->
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+       $(document).ready(function() {
+             var deger= document.getElementsByClassName('.product-price d-none');
+    console.log(deger);
+    var result=document.getElementById('cart-subtotal').value;
+    console.log( "eesss"+result);
+
+      var taxRate = parseFloat(deger);
+      var fadeTime = parseInt(50);
+      console.log(taxRate);
+      console.log(fadeTime);
+
+      /* Assign actions */
+      $('.pass-quantity input').change(function() {
+        updateQuantity(this);
+      });
+
+      $('.remove-item button').click(function() {
+        removeItem(this);
+      });
+
+
+      /* Recalculate cart */
+      function recalculateCart() {
+        var subtotal = 0;
+
+        /* Sum up row totals */
+        $('.item').each(function() {
+          subtotal += parseFloat($(this).children('.product-line-price').text());
+        });
+
+        /* Calculate totals */
+        if(fadeTime>0)
+        {
+        var tax = subtotal;
+        var total = parseFloat(subtotal)+parseInt(fadeTime);
+        console.log("total: "+parseFloat(total));
+        }else{
+            var tax = subtotal;
+        var total = tax;
+        console.log("total: "+total);
+        }
+
+        /* Update totals display */
+        $('.totals-value').fadeOut(fadeTime, function() {
+          $('#cart-subtotal').html(subtotal.toFixed(2));
+    @* $('#cart-tax').html(tax.toFixed(2));*@
+          $('.cart-total').html(total.toFixed(2));
+          if (total == 0) {
+            $('.checkout').fadeOut(fadeTime);
+          } else {
+            $('.checkout').fadeIn(fadeTime);
+          }
+          $('.totals-value').fadeIn(fadeTime);
+        });
+      }
+
+
+      /* Update quantity */
+      function updateQuantity(quantityInput) {
+        /* Calculate line price */
+        var productRow = $(quantityInput).parent().parent();
+        var price = parseFloat(productRow.children('.product-price').text());
+        var quantity = $(quantityInput).val();
+        var linePrice = price * quantity;
+
+        /* Update line price display and recalc cart totals */
+        productRow.children('.product-line-price').each(function() {
+          $(this).fadeOut(fadeTime, function() {
+            $(this).text(linePrice.toFixed(2));
+            recalculateCart();
+            $(this).fadeIn(fadeTime);
+          });
+        });
+      }
+
+      /* Remove item from cart */
+      function removeItem(removeButton) {
+        /* Remove row from DOM and recalc cart total */
+        var productRow = $(removeButton).parent().parent();
+        productRow.slideUp(fadeTime, function() {
+          productRow.remove();
+          recalculateCart();
+        });
+      }
+
+    });
+</script>
+
+<script type="text/javascript">
+    var deger= parseFloat(document.getElementById('asdfiyat').value);
+    console.log(deger);
+</script>

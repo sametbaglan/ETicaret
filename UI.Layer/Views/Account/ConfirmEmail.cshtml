@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Hesap Aktifleştirme</title>
+</head>
+<body>
+    <div class="alert alert-warning">
+        @if(TempData["confirm"] != null)
+        {
+            @TempData["confirm"]
+        }
+    </div>
+</body>
+</html>

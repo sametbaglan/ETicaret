@@ -1,0 +1,168 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "ProductSend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <style>
+        #product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<section class="breadcrumb-section set-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="body">
+                        <form asp-controller="Trendyol" asp-action="ProductSend" name="formadd" method="post" enctype="multipart/form-data">
+                            @if (ViewBag.error != null)
+                            {
+                                <div class="alert-danger">@ViewBag.error</div>
+                            }
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Barkod</label>
+                                        <input id="productName" class="form-control" type="text" asp-for="TrendyolProduct.barcode" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Title</label>
+                                        <input id="unitPrice" class="form-control" asp-for="TrendyolProduct.title" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Ana Ürün Kodu</label>
+                                        <input id="unitPrice" class="form-control" asp-for="TrendyolProduct.productMainId" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Marka</label>
+                                        @Html.DropDownListFor(x =>x.TrendyolBrad.id,(List<SelectListItem>)ViewBag.brandFilters, "Select...", new {@class ="form-control"})
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Kategori</label>
+                                        <input id="unitPrice" class="form-control" asp-for="TrendyolProduct.categoryId" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Adet</label>
+                                        <input type="number" id="unitPrice" class="form-control" asp-for="TrendyolProduct.quantity" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Vat Rate</label>
+                                        <input type="number" id="unitPrice" class="form-control" asp-for="TrendyolProduct.vatRate" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Stok Kodu</label>
+                                        <input id="productName" class="form-control" type="text" asp-for="TrendyolProduct.stockCode" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Desi</label>
+                                        <input id="unitPrice" class="form-control" asp-for="TrendyolProduct.dimensionalWeight" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Açıklama</label>
+                                        <input id="unitPrice" class="form-control" asp-for="TrendyolProduct.description" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Para Birimi</label>
+                                        <input id="unitPrice" class="form-control" asp-for="TrendyolProduct.currencyType" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Liste Fiyat</label>
+                                        <input id="unitPrice" class="form-control" asp-for="TrendyolProduct.listPrice" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3">Satış Fiyta</label>
+                                        <input type="number" id="unitPrice" class="form-control" asp-for="TrendyolProduct.salePrice" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3"> Kargo</label>
+                                        <input type="number" id="unitPrice" class="form-control" asp-for="TrendyolProduct.cargoCompanyId" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="form-control-3"> Resim</label>
+                                        <input type="number" id="unitPrice" class="form-control" asp-for="TrendyolProduct.images" required />
+                                    </div>
+                                    <div class="form-group-row">
+                                        <label class="col-form-label">Resim</label>
+                                        <div class="custom-file">
+                                            <input type="file" name="file" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="col-form-label">Kategori</label>
+                                    <div class="form-group-row">
+                                        <div class="table-responsive check-all-parent anyClass" style="width:268%;">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Kategori</th>
+                                                        <th>
+                                                            <table class="table table-bordered">
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>Kategori</td>
+                                                                </tr>
+                                                            </table>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        @foreach (var item in Model.TrendyolCategoryList)
+                                                        {
+                                                            <td></td>
+                                                            <td>
+                                                                @item.name
+                                                            </td>
+
+                                                            @if (@item.subCategories.Count > 0)
+                                                            {
+                                                                @foreach (var sub in item.subCategories)
+                                                                {
+                                                                <tr>
+                                                                    <td>@sub.name</td>
+                                                                </tr>
+
+                                                                }
+                                                            }
+                                                        }
+                                                    </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-10 offset-md-2">
+                                        <button type="submit" id="btn1" class=" center-block btn btn-primary">Ürün Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

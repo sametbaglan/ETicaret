@@ -1,0 +1,72 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+</head>
+<body>
+    <form asp-controller="Admin" asp-action="Update" name="formadd" method="post" enctype="multipart/form-data">
+        @if (ViewBag.error != null)
+        {
+            <div class="alert-danger">@ViewBag.error</div>
+        }
+        <section class="product-details spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Ürün Ad</label>
+                            <input id="productName" class="form-control" type="text" asp-for="Product.ProductName" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="form-control-3">Barcode</label>
+                            <input id="unitPrice" class="form-control" asp-for="Product.Barcode" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="form-control-3">Fiyat</label>
+                            <input id="unitPrice" class="form-control" asp-for="Product.Price" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="form-control-3">İndirimli Tutar</label>
+                            <input id="unitPrice" class="form-control" asp-for="Product.ReducedPrice" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="form-control-3">Açıklama</label>
+                            <input id="unitPrice" class="form-control" asp-for="Product.Descriptions" required />
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-form-label">Resim</label>
+                            <div class="custom-file">
+                                <input type="file" name="file" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-10 offset-md-10">
+                                <button type="submit" id="btn1" class=" center-block btn btn-primary">Güncelle</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-form-label">Kategori</label>
+                        <div class="form-check">
+
+                            @if (@ViewBag.selectlist != null)
+                            {
+                                @Html.DropDownListFor(x =>x.categoria.CategoriaID, (List<SelectListItem>)ViewBag.selectlist,"Seç..", new {@class ="form-control"})
+                            }
+                            else
+                            {
+                                <b>Kategori Bulunmamaktadır.</b>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿@model ColorCreateModel
+@{
+    ViewData["Title"] = "AddColor";
+    Layout = "~/Views/Shared/CreateLayout.cshtml";
+}
+<html>
+<head>
+
+</head>
+<body>
+
+
+    <form asp-controller="ItemColor" asp-action="AddColor" method="post">
+
+        <div class="form-group-row">
+            <label class="col-md-2 col-form-label"> 1.Renk</label>
+            <div class="col-md-10">
+                <input id="renk" asp-for="Color1" name="Color1" value="" class="form-control" />
+
+            </div>
+        </div>
+
+        <br />
+
+
+        <div class="form-group-row">
+            <label class="col-md-2 col-form-label"> 2.Renk</label>
+            <div class="col-md-10">
+                <input id="renk"  asp-for="Color2" name="Color2" value="" class="form-control" />
+
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group-row">
+            <label class="col-md-2 col-form-label"> 3.Renk</label>
+            <div class="col-md-10">
+                <input id="renk"  asp-for="Color3" name="Color3" value="" class="form-control" />
+
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group-row">
+            <label class="col-md-2 col-form-label"> 4.Renk</label>
+            <div class="col-md-10">
+                <input id="renk"  asp-for="Color4" name="Color4" value="" class="form-control" />
+
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group-row">
+            <label class="col-md-2 col-form-label"> 5.Renk</label>
+            <div class="col-md-10">
+                <input id="renk"  asp-for="Color5" name="Color5" value="" class="form-control" />
+
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-md-10 offset-md-2">
+                <button type="submit" id="btn1" class=" center-block btn btn-primary">Ürün Ekle</button>
+            </div>
+
+        </div>
+
+
+    </form>
+
+
+
+
+
+
+
+
+</body>
+</html>
+

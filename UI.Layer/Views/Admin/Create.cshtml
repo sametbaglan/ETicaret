@@ -1,0 +1,123 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<head>
+    <style>
+        #product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<section class="breadcrumb-section set-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <form asp-controller="Admin" asp-action="Create" name="formadd" method="post" enctype="multipart/form-data">
+                    @if (ViewBag.error != null)
+                    {
+                        <div class="alert-danger">@ViewBag.error</div>
+                    }
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Ürün Ad</label>
+                                <input id="productName" class="form-control" type="text" asp-for="Product.ProductName" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="form-control-3">Barcode</label>
+                                <input id="unitPrice" class="form-control" asp-for="Product.Barcode" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="form-control-3">Fiyat</label>
+                                <input id="unitPrice" class="form-control" asp-for="Product.Price" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="form-control-3">İndirimli Tutar</label>
+                                <input id="unitPrice" class="form-control" asp-for="Product.ReducedPrice" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="form-control-3">Açıklama</label>
+                                <textarea asp-for="Product.Descriptions" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group-row">
+                                <label class="col-form-label">Resim</label>
+                                <div class="custom-file">
+                                    <input type="file" name="file" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-10 offset-md-2">
+                                    <button type="submit" id="btn1" class=" center-block btn btn-primary">Ürün Ekle</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-form-label">Kategori</label>
+                            <div class="form-check">
+
+                                @if (@ViewBag.selectlist != null)
+                                {
+                                    @Html.DropDownListFor(x =>x.categoria.CategoriaID, (List<SelectListItem>)ViewBag.selectlist,"Seç..", new {@class ="form-control"})
+                                }
+                                else
+                                {
+                                    <b>Kategori Bulunmamaktadır.</b>
+                                }
+                            </div>
+                            <div class="form-group-row">
+                                <div class="table-responsive check-all-parent anyClass" style="width:268%;">
+                                    <table class="table table-custom table-hover m-b-0 c_list">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Renk </th>
+                                                <th scope="col">Miktar</th>
+                                                <th scope="col">Bedenleri</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.bodySizes)
+                                            {
+                                                <tr>
+                                                    <td style="width: 50px;">
+                                                        <label class="fancy-checkbox">
+                                                            <input class="checkbox-tick selectlist" type="checkbox" value="@item.BodyID" id="checkbottom" name="emptycoloritem">
+                                                            <span></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        @ProductListViewModel.ReturnColor(item.ItemColorid)
+                                                    </td>
+                                                    <td>@item.BodyCount</td>
+                                                    <td>@item.BodyName</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,89 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <style>
+        #product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<section class="breadcrumb-section set-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                @if (ViewBag.error != null)
+                {
+                    <div class="@ViewBag.messagecolor" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>@ViewBag.State</strong> @ViewBag.error
+                    </div>
+                }
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Kategori</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Categorias)
+                        {
+                            <tr>
+                                <th scope="row"></th>
+                                <td>@item.CategoryName</td>
+                                <td>
+                                    <form action="/Categoria/Update/" method="get" style="display:inline">
+                                        <input type="hidden" name="categoryid" value="@item.CategoriaID" />
+                                        <button type="submit" class="btn btn-success">Güncelle</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="/Categoria/GetByWithProductId/" method="get" style="display:inline">
+                                        <input type="hidden" name="categoriaid" value="@item.CategoriaID" />
+                                        <button type="submit" class="btn btn-warning">Ürünler</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="/Categoria/Delete/" method="post" style="display:inline">
+                                        <input type="hidden" name="categoryid" value="@item.CategoriaID" />
+                                        <button type="submit" class="btn btn-danger">Sil</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+         window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 3000);
+</script>

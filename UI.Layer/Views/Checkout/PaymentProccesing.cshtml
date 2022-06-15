@@ -1,0 +1,146 @@
+﻿@using ETicaret.UILayer.Models.IdentityModels.MainLayoutModel
+@using ETicaret.UILayer.Models.OrdersModels
+@model AllLayoutModel
+@{
+    ViewData["Title"] = "PaymentProccesing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumb Section End -->
+<!-- Checkout Section Begin -->
+<section class="product-details spad">
+    <div class="container-fluid">
+
+
+        <div class="row clearfix">
+            @if (ViewBag.Message != null)
+            {
+                <div class="col-md-6">
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>@ViewBag.State</strong> @ViewBag.Message
+                    </div>
+                </div>
+            }
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="body">
+                        <h4>Faturalama Ayrıntıları</h4>
+                        <form asp-controller="Checkout" asp-action="PaymentProccesing" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <p>İsim<span>*</span></p>
+                                        <input type="text" asp-for="@Model.orderModel.FirstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>Soyad<span>*</span></p>
+                                        <input type="text" asp-for="@Model.orderModel.LastName" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p>Şehir<span>*</span></p>
+                                        <input type="text" asp-for="@Model.orderModel.City" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>Adres<span>*</span></p>
+                                        <textarea class="form-control" rows="3" required></textarea>
+                                        <input type="text" placeholder="Apartman No" asp-for="@Model.orderModel.Address" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>Telefon<span>*</span></p>
+                                        <input type="number" asp-for="@Model.orderModel.Phone" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <p>Kartın Sahibi<span>*</span></p>
+                                        <input type="text" placeholder="Kart Sahibinin İsmi" asp-for="@Model.orderModel.CartdName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>Kart Numarası<span>*</span></p>
+                                        <input type="number" placeholder="Kart Numarası" asp-for="@Model.orderModel.CartNumber" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>Ay<span>*</span></p>
+                                        <input type="text" asp-for="@Model.orderModel.ExpirationMonth" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>Yıl<span>*</span></p>
+                                        <input type="number" asp-for="@Model.orderModel.ExpirationYear" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>CVV<span>*</span></p>
+                                        <input type="number" placeholder="CVV" asp-for="@Model.orderModel.CVV" required>
+                                    </div>
+@*                                    <div class="form-group">
+                                        <p>Adresiniz Kaydedilsin mi?</p>
+                                        <input type="checkbox" name="record" required>
+                                    </div>*@
+                                </div>
+                                <div class="col-ms-10 ml-3 mt-3" style="width: 300px;">
+                                    <div class="checkout__order">
+                                        <h4>Siparişiniz</h4>
+                                        @if (Model.orderModel.CartItems.Count > 0)
+                                        {
+                                            <div class="checkout__order__products">Ürünler <span>Fiyat</span></div>
+                                            @foreach (var item in Model.orderModel.CartItems)
+                                            {
+                                                <ul>
+                                                    @if (@item.Product.ReducedPrice > 0)
+                                                    {
+                                                        <li>@item.Product.ProductName <span> @((decimal)item.Product.ReducedPrice*item.Quantity)</span></li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li>@item.Product.ProductName <span>@(item.Product.Price*item.Quantity)</span></li>
+                                                    }
+                                                </ul>
+                                            }
+                                            @if (OrderModel.SumCalculation(Model.orderModel, false) >= 100)
+                                            {
+                                                <div class="checkout__order__total">Kargo<span>Ücretsiz</span></div>
+                                                <div class="checkout__order__subtotal">Toplam <span>@OrderModel.SumCalculation(Model.orderModel,false) TL</span></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="checkout__order__subtotal">Kargo <span>30 TL</span></div>
+                                                <div class="checkout__order__total">Toplam <span>@OrderModel.SumCalculation(Model.orderModel,true) TL</span></div>
+                                            }
+                                            <button type="submit" class="site-btn">Siparişi Ver</button>
+                                        }
+                                        else
+                                        {
+                                            <div class="alert-danger">Sepetiniz Boştur</div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+        var myCard = $('#my-card');
+    var cardNumber = myCard.CardJs('cardNumber');
+    var cardType = myCard.CardJs('cardType');
+    var name = myCard.CardJs('name');
+    var expiryMonth = myCard.CardJs('expiryMonth');
+    var expiryYear = myCard.CardJs('expiryYear');
+    var cvc = myCard.CardJs('cvc');
+    $('#my-card').CardJs('function')
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+         window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 3000);
+</script>

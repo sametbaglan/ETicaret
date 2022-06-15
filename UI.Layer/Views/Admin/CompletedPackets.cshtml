@@ -1,0 +1,56 @@
+﻿@using UI.Layer.Models.OrdersModels
+@model AllLayoutModel
+@{
+    ViewData["Title"] = "CompletedPackets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Resim</th>
+                            <th scope="col">Ürün</th>
+                            <th scope="col">Fiyat</th>
+                            <th scope="col">Adet</th>
+                            <th scope="col">Adres</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">Kargo</th>
+                            <th scope="col">Renk</th>
+                            <th scope="col">Beden</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ShipmenList)
+                        {
+                            @ProductListViewModel.Shipmenıtems(@item.OrderId)
+                            <tr>
+                                <td></td>
+                                <td><img src="/images/@ProductListViewModel.product(item.ProductId).ImageUrl" width="80"></td>
+                                <td>@ProductListViewModel.product(item.ProductId).ProductName</td>
+                                <td>@item.Price<br /><b>İndirimli Tutar:<b>@item.ReducedPrice</b></b></td>
+                                <td>@item.Quantity</td>
+
+                                <td>@ProductListViewModel.shipmens.City  / @ProductListViewModel.shipmens.Address </td>
+                                <td>@ProductListViewModel.shipmens.Phone</td>
+                                <td>@OrderViewModel.adetilefiyat(item.Id)</td>
+                                <td>@OrderViewModel.renk(Convert.ToInt32(item.renk))</td>
+                                <td>@OrderViewModel.beden(Convert.ToInt32(item.beden))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="col-ml-8">
+                    <b>Toplam Tutar:<h4 class="text-danger">@OrderViewModel.toplam()</h4></b>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

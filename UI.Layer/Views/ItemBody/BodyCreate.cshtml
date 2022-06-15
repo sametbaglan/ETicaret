@@ -1,0 +1,77 @@
+﻿@model BodySizeCreateModel
+@{
+    ViewData["Title"] = "BodyCreate";
+    Layout = "~/Views/Shared/CreateLayout.cshtml";
+}
+
+
+
+<html>
+<head>
+
+</head>
+<body>
+    <form asp-controller="ItemBody" asp-action="BodyCreate" method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label">XS</label>
+                    <div class="col-md-10">
+                        <input type="text" asp-for="XS" name="XS" value="" class="form-control" />
+
+                    </div>
+                </div>
+                <br />
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label">S</label>
+                    <div class="col-md-10">
+                        <input type="text" asp-for="S" name="S" value="" class="form-control" />
+
+                    </div>
+                </div>
+                <br />
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label">M</label>
+                    <div class="col-md-10">
+                        <input type="text" asp-for="M" name="M" value="" class="form-control" />
+
+                    </div>
+                </div>
+                <br />
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label">L</label>
+                    <div class="col-md-10">
+                        <input type="text" asp-for="L" name="L" value="" class="form-control" />
+
+                    </div>
+                </div>
+                <br />
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label">XL</label>
+                    <div class="col-md-10">
+                        <input type="text" asp-for="XL" name="XL" value="" class="form-control" />
+
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label">XXL</label>
+                    <div class="col-md-10">
+                        <input type="text" asp-for="XXL" name="XXL" value="" class="form-control" />
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2">
+                        <button type="submit" id="btn1" class=" center-block btn btn-primary">Beden Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+

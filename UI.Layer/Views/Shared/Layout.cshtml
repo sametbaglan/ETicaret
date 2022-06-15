@@ -1,0 +1,270 @@
+﻿@model AllLayoutModel
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+<!-- Mirrored from technext.github.io/ogani/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Nov 2021 21:59:06 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giyim Over</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&amp;display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/templates/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/templates/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/templates/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/templates/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/templates/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/templates/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/templates/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/templates/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+     
+        </div>
+        <div class="humberger__menu__cart">
+            <ul>
+              
+            </ul>
+             
+        </div>
+        <div class="humberger__menu__widget">
+
+            <div class="header__top__right__auth">
+                
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+         
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+               
+           
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                      
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+
+                    
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                      
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                     
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> -->
+                            <!-- <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li> -->
+                        </ul>
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+ 
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+
+                        <div class="hero__categories">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9">
+
+                        <div class="hero__search">
+                          
+                            @RenderBody()
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+  
+    <section class="categories">
+        <div class="container">
+            <div class="row">
+                <div class="categories__slider owl-carousel">
+                    <div class="col-lg-3">
+                        <!-- <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
+                            <h5><a href="#">Fresh Fruit</a></h5>
+                        </div> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                @*      <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__about">
+                    <div class="footer__about__logo">
+                    @if (@Model.UserInfo == null || Model.UserInfo.role == "B")
+                    {
+                    <a asp-controller="Product" asp-action="ProductList"><img style="border-radius:194px; max-width:40%;" src="~/logos/giyimoverlogo.jpg" alt=""></a>
+                    }
+                    else
+                    {
+                    <a asp-controller="Admin" asp-action="List"><img style="border-radius:194px; max-width:40%;" src="~/logos/giyimoverlogo.jpg" alt=""></a>
+                    }
+                    </div>
+                    </div>
+                    </div>*@
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer-menu-title h3" style="text-decoration:underline;">KURUMSAL</div>
+                        <div class="footer__about__logo">
+                            <div class="footer__about__logo">
+                                <ul>
+                                    <li><a asp-controller="Users" asp-action="Contact"style="color:#8c8c8c;">İletişim</a></li>
+                                    <li><a asp-controller="Users" asp-action="InfoSendEmail"style="color:#8c8c8c;">İletişim Formu</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer-menu-title h3" style="text-decoration:underline;">ALIŞVERİŞ</div>
+                        <div class="footer__about__logo">
+                            <div class="footer__about__logo">
+                                <ul>
+                                    <li><a asp-controller="Contracts" asp-action="SalesContract" style="color:#8c8c8c;">Mesafeli Satış Sözleşmesi</a></li>
+                                    <li><a asp-controller="Contracts" asp-action="PrivacyAndSecurity"style="color:#8c8c8c;">Gizlilik ve Güvenlik</a></li>
+                                    <li><a asp-controller="Contracts" asp-action="CancellationandRefund"style="color:#8c8c8c;">İptal ve İade Şartları</a></li>
+                                    <li><a asp-controller="Contracts" asp-action="PersonalDataPolicy"style="color:#8c8c8c;">Kişisel Veriler Politikası</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer-menu-title h3" style="text-decoration:underline;">ÜYELİK</div>
+                        <div class="footer__about__logo">
+                            <div class="footer__about__logo">
+                                <ul>
+                                     <li><a asp-controller="Account" asp-action="Register" style="color:#8c8c8c;">Yeni Üyelik</a></li>
+                                     <li><a asp-controller="Account" asp-action="Login" style="color:#8c8c8c;">Üye Girişi</a></li>
+                                     <li><a asp-controller="Account" asp-action="FargotPassword" style="color:#8c8c8c;">Şifremi Unuttum</a></li>
+                                     <li><a asp-controller="Checkout" asp-action="Checkout" style="color:#8c8c8c;">Sepettekiler</a></li>
+                                    <li> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>Tüm Hakları Saklıdır | LegendSoft <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">LegendSoft</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                        <div class="footer__copyright__payment"><img src="/templates/img/payment-item.png" alt=""><img width="80" src="/iyzico/iyzico-logo-subbrands-pwi.svg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Js Plugins -->
+    <script src="/templates/js/jquery-3.3.1.min.js"></script>
+    <script src="/templates/js/bootstrap.min.js"></script>
+    <script src="/templates/js/jquery.nice-select.min.js"></script>
+    <script src="/templates/js/jquery-ui.min.js"></script>
+    <script src="/templates/js/jquery.slicknav.js"></script>
+    <script src="/templates/js/mixitup.min.js"></script>
+    <script src="/templates/js/owl.carousel.min.js"></script>
+    <script src="/templates/js/main.js"></script>
+
+
+    <!-- Hero Section End -->
+    <!-- Categories Section Begin -->
+
+</body>
+
+
+<!-- Mirrored from technext.github.io/ogani/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Nov 2021 21:59:17 GMT -->
+</html>

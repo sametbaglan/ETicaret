@@ -1,0 +1,88 @@
+﻿@using ETicaret.UILayer.Models.IdentityModels.MainLayoutModel
+@using UI.Layer.Models.OrdersModels
+@model AllLayoutModel
+@{
+    ViewData["Title"] = "MyOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        #product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<section class="breadcrumb-section set-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            @if (Model.Shipmens.Count > 0)
+            {
+                @foreach (var item in Model.Shipmens)
+                {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Adres<br /><b>@item.City / @item.Address </b></td>
+                                <td>Sipariş Tarihi<br /><b>@item.OrderDate.ToShortDateString()</b></td>
+                                <td>Alıcı<br /><b>@item.FirstName</b></td>
+                                <td>Genel Tutar<br /><b>@OrderViewModel.TotalPrice(@item.Id)</b></td>
+                                <td>Durum</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @OrderViewModel.ShipmenProductName(@item.Id,Model)
+                            <tr>
+                                @foreach (var items in Model.ShipmenList)
+                                {
+                                    <th><img src="~/images/@items.Product.ImageUrl" width="80px;" /></th>
+
+                                    <td> Ürün <b>@items.Product.ProductName</b> </td>
+
+                                    <td>Fiyat
+                                        @if (items.ReducedPrice > 0)
+                                        {
+                                            <b><del>@items.Price</del><br /><b>@items.ReducedPrice TL </b><small>*(@items.Quantity)</small></b>
+                                        }
+                                        else
+                                        {
+                                            <b>@items.Price<small>*(@items.Quantity)</small></b>
+                                        }
+                                    </td>
+                                    <td> Özellikler<br /> <b>@ProductListViewModel.ColorName(Convert.ToInt32(items.renk))</b><br /><b>@ProductListViewModel.BedenName(Convert.ToInt32(items.beden))</b></td>
+                                    <th>
+                                        @if (items.State == 1)
+                                        {
+                                            <a class="btn btn-danger">Hazırlanıyor</a>
+                                        }
+                                        else if (items.State == 2)
+                                        {
+                                            <a class="btn btn-warning">Kargoda</a>
+                                        }
+                                        else if (items.State == 3)
+                                        {
+                                            <a class="btn btn-success">Teslim Edildi</a>
+                                        }
+                                    </th>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+

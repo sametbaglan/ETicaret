@@ -1,0 +1,66 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        .site-btn {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 13px 30px 12px;
+            background: #252525;
+            border: none;
+        }
+    </style>
+</head>
+
+<section class="checkout spad">
+    <div class="container">
+        <div class="checkout__form">
+            <h4>Giriş Yap</h4>
+                 @if (ViewBag.error != null)
+                {
+                    <div class="@ViewBag.messagecolor" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>@ViewBag.State</strong> @ViewBag.error
+                    </div>
+                }
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>E-mail<span>*</span></p>
+                                    <input type="text" asp-for="LoginModel.Email" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Şifre<span>*</span></p>
+                                    <input type="password" asp-for="LoginModel.Password" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="site-btn btn btn-success">Giriş Yap</button>
+                        <a href="/Account/FargotPassword" class="site-btn btn btn-warning">Şifre mi Unuttum ?</a>
+                        <a href="/Account/Register" class="site-btn btn btn-secondary">Kayıt Ol</a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+         window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 3000);
+</script>

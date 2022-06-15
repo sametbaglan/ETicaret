@@ -1,0 +1,81 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+</head>
+<body>
+    <form asp-controller="Account" asp-action="Register" name="formadd" method="post" enctype="multipart/form-data">
+
+        <div class="row">
+            @if (ViewBag.error != null)
+            {
+                <div class="@ViewBag.messagecolor" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>@ViewBag.State</strong> @ViewBag.error
+                </div>
+            }
+            <div class="col-md-8">
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label"> İsim</label>
+                    <div class="col-md-10">
+                        <input asp-for="RegisterModel.FirstName" class="form-control" />
+                        <span asp-validation-for="RegisterModel.FirstName"></span>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label"> Soyad</label>
+                    <div class="col-md-10">
+                        <input asp-for="RegisterModel.LastName" class="form-control" />
+                        <span asp-validation-for="RegisterModel.LastName"></span>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label"> Doğum Tarihi</label>
+                    <div class="col-md-10">
+                        <input type="date" asp-for="RegisterModel.DateOfBirth" class="form-control" required />
+                        <span asp-validation-for="RegisterModel.DateOfBirth"></span>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label"> Email</label>
+                    <div class="col-md-10">
+                        <input asp-for="RegisterModel.Email" class="form-control" required />
+                        <span asp-validation-for="RegisterModel.Email"></span>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label">Şifre</label>
+                    <div class="col-md-10">
+                        <input type="password" asp-for="RegisterModel.Password" class="form-control" required />
+                        <span asp-validation-for="RegisterModel.UserName"></span>
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <label class="col-md-2 col-form-label">Telefon</label>
+                    <div class="col-md-10">
+                        <input type="password" asp-for="RegisterModel.PhoneNumber" class="form-control" required />
+                        <span asp-validation-for="RegisterModel.PhoneNumber"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2">
+                        <button type="submit" id="btn1" class=" center-block btn btn-primary">Kayıt Ol</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+<script>
+         window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 3000);
+</script>

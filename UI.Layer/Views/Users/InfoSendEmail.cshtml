@@ -1,0 +1,873 @@
+﻿@using ETicaret.UILayer.Models.IdentityModels.MainLayoutModel
+@model AllLayoutModel
+@{
+    ViewData["Title"] = "InfoSendEmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        #product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<section class="breadcrumb-section set-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <section class="col-12">
+                <div class="contentbox-header">
+                    <h4 style="text-decoration:underline;">İletişim Formu</h4>
+                </div>
+                @if (ViewBag.error != null)
+                {
+                    <div class="text-danger">@ViewBag.error</div>
+                }
+                <div class="contentbox-body">
+                    <form asp-controller="Users" asp-action="InfoSendEmail" class="form-horizontal" method="POST" data-selector="contact-form" novalidate="novalidate">
+                        <div class="form-group row">
+                            <label class="col-12 col-lg-4 control-label">Adı Soyadı</label>
+                            <div class="col-12 col-lg-5">
+                                <input class="form-control" type="text" name="fullname" asp-for="@Model.ınfoSendEmail.NameSurname" autocomplete="given-name" required="required">
+                                <span class="required">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-lg-4 control-label">Email</label>
+                            <div class="col-12 col-lg-5">
+                                <input class="form-control" type="text" name="email" id="email" asp-for="@Model.ınfoSendEmail.Email" autocomplete="email" required="required">
+                                <span class="required">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-lg-4 control-label">Telefon</label>
+                            <div class="col-12 col-lg-5">
+                                <input class="form-control" type="text" name="phone" id="phone" asp-for="@Model.ınfoSendEmail.Phone" autocomplete="tel" maxlength="19" required="required">
+                                <span class="required">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-lg-4 control-label">Konu</label>
+                            <div class="col-12 col-lg-5">
+                                <input class="form-control" type="text" asp-for="@Model.ınfoSendEmail.Subject" required />
+                                <span class="required">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-lg-4 control-label">Mesaj</label>
+                            <div class="col-12 col-lg-5">
+                                <textarea class="form-control" type="message" asp-for="@Model.ınfoSendEmail.Message" required></textarea>
+                                <span class="required">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-12 col-lg-4 control-label"></label>
+                            <div class="col-12 col-lg-5">
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" id="personalDataAgreement" asp-for="@Model.ınfoSendEmail.Kvk" name="c1" onclick="showMe('content1');" checkBoxValidate(0);  required="required">
+                                    <label for="personalDataAgreement" data-target="#personalDataAgreement">
+                                        <u>Kişisel verilerin işlenmesine ilişkin Aydınlatma Metnini okudum.</u>
+                                        <span class="required">*</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12 col-lg-9 text-right">
+                                <div class="btn-group-binary">
+                                    <button type="submit" class="btn btn-primary">
+                                        Gönder
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="anticsrf" value="72d80110e03767cdc78645f8a33e1b2aa8c168a4">
+                    </form>
+                </div>
+                <div style="display:none;" id="content1">
+                    <div class="contentbox-header">
+                        <h4>Üye ve Ziyaretçi Kişisel Veri Aydınlatma Metni</h4>
+                    </div>
+
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif="">
+                            <span style="font-weight: bold;">
+                                KİŞİSEL
+                                VERİLERİN KORUNMASI HAKKINDA BİLGİLENDİRME
+                            </span>
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Gerek
+                            web sitemizi kullanırken, gerekse başka yollarla tarafımıza
+                            iletmiş olduğunuz kişisel bilgilerinizin güvenliğinin
+                            sağlanmasına son derece önem vermektedir. 6698 Sayılı "Kişisel
+                            Verilerin Korunması Kanunu” yürürlüğe girmiştir. Anılan
+                            mevzuat ve bu mevzuatta belirtilen bir takım tanımlar hakkında
+                            sizi bilgilendirmek isteriz:
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                Kişisel
+                                veri
+
+                            </span>
+
+                        </span><span times="" new="" roman",="" serif;"="">
+
+                            :
+                            Kimliği belirli veya belirlenebilir gerçek kişiye ilişkin her
+                            türlü bilgiyi,
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                Kişisel
+                                verilerin İşlenmesi	:
+
+                            </span>
+
+                        </span><span times="" new="" roman",="" serif;"="">
+
+                            Kişisel verilerin tamamen veya kısmen otomatik olan ya da herhangi
+                            bir veri kayıt sisteminin parçası olmak kaydıyla otomatik olmayan
+                            yollarla elde edilmesi, kaydedilmesi, depolanması, muhafaza
+                            edilmesi, değiştirilmesi, yeniden düzenlenmesi, açıklanması,
+                            aktarılması, devralınması, elde edilebilir hâle getirilmesi,
+                            sınıflandırılması ya da kullanılmasının engellenmesi gibi
+                            veriler üzerinde gerçekleştirilen her türlü işlemi,
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                Veri
+                                işleyen			:
+
+                            </span>
+
+                        </span><span times="" new="" roman",="" serif;"="">
+
+                            Veri sorumlusunun verdiği yetkiye dayanarak onun adına kişisel
+                            verileri işleyen gerçek veya tüzel kişiyi,
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                Veri
+                                kayıt sistemi 		:
+
+                            </span>
+
+                        </span><span times="" new="" roman",="" serif;"="">
+
+                            Kişisel
+                            verilerin belirli kriterlere göre yapılandırılarak işlendiği
+                            kayıt sistemini,
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                Veri
+                                sorumlusu 		:
+
+                            </span>
+
+                        </span><span times="" new="" roman",="" serif;"="">
+
+                            Kişisel
+                            verilerin işleme amaçlarını ve vasıtalarını belirleyen, veri
+                            kayıt sisteminin kurulmasından ve yönetilmesinden sorumlu olan
+                            gerçek veya tüzel kişiyi ifade eder.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <br>
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                1.
+                                Kişisel Verilerin Korunması ve Rıza Metninin Amacı ve
+                                Şirketimizin Veri Sorumlusu Konumu:
+
+                            </span>
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Alışveriş
+                            sitemizin müşterilere ilişkin kişisel veriler bakımından 6698
+                            sayılı Kişisel Verilerin Korunması Kanunu ("Kanun”)
+                            kapsamında "veri sorumlusu” sıfatına sahip olup işbu Kişisel
+                            Verilerin Korunması ve Rıza Metni ile söz konusu Kanun uyarınca
+                            müşterilerin alışveriş sitemiz tarafından gerçekleştirilen
+                            kişisel veri işleme faaliyetleri hakkında aydınlatılması ve
+                            aşağıda 3. maddede belirtilen durumlar için açık rızalarının
+                            temini hedeflenmektedir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <br>
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                3.
+                                Müşterilerin Açık Rızası Doğrultusunda İşlenecek Kişisel
+                                Veriler ve İşleme Amaçları:
+
+                            </span>
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Kanun’un
+                            5/2 ile 6/3 maddesinde yer alan kişisel veri işleme şartlarının
+                            karşılanamadığı aşağıdaki durumlar için Alışveriş sitemiz
+                            tarafından kişisel verilerin işlenebilmesi için müşterilerin
+                            açık rızasının alınması gerekmektedir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <br>
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                2.
+                                Müşterilere Ait Kişisel Verilerin İşlenme Amacı:
+
+                            </span>
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Müşterilere
+                            ait kişisel veriler aşağıda ve Kanun’un 5. ve 6. maddelerinde
+                            belirtilen kişisel veri işleme şartları ve amaçları
+                            çerçevesinde işlenmektedir. Müşterilere ait kişisel veriler;
+
+                        </span>
+
+                    </p>
+                    <ul>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Alışveriş
+                                    sitemiz tarafından sunulan ürün ve hizmetlerden ilgili kişileri
+                                    faydalandırmak için gerekli çalışmaların iş birimleri
+                                    tarafından yapılması ve ilgili iş süreçlerinin yürütülmesi,
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"=""></span><span times="" new="" roman",="" serif;"="">
+
+                                    Alışveriş
+                                    sitemiz tarafından yürütülen ticari faaliyetlerin
+                                    gerçekleştirilmesi için ilgili iş birimleri tarafından gerekli
+                                    çalışmaların yapılması ve buna bağlı iş süreçlerinin
+                                    yürütülmesi,
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Alışveriş
+                                    sitemizin ticari ve/veya iş stratejilerinin planlanması ve icrası,
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Alışveriş
+                                    sitemiz ile iş ilişkisi içerisinde olan ilgili kişilerin hukuki,
+                                    teknik ve ticari-iş güvenliğinin temini ile tarafımızın
+                                    sunduğu ürün ve hizmetlerin ilgili kişilerin beğeni, kullanım
+                                    alışkanlıkları ve ihtiyaçlarına göre özelleştirilerek
+                                    ilgili kişilere önerilmesi ve tanıtılması için gerekli olan
+                                    aktivitelerin planlanması ve icrası,
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    İlgililerin
+                                    olası hak ve alacak taleplerinin tesisi
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Yetkili
+                                    kuruluşlara mevzuattan kaynaklı bilgi verilmesi
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Ziyaretçi
+                                    kayıtlarının oluşturulması ve takibi
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Şirketimiz
+                                    ve Şirketimiz adına şubelerimiz, çağrı merkezimiz, bağlı
+                                    şirketlerimiz tarafından ya da internet sitelerimiz ile sosyal
+                                    medya sayfalarımız veya ve bunlarla sınırlı olmamak üzere her
+                                    türlü kanallar aracılığı ile Tüketicinin Korunması Hakkında
+                                    Kanun, Perakende Ticaretin Düzenlenmesi Hakkında Kanun ve diğer
+                                    yasal mevzuat kapsamında, yükümlülüklerin yerine getirilmesini
+                                    sağlamak,
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Müşterilere
+                                    daha iyi hizmet verebilme, çeşitli avantajlar sağlayıp sunma,
+                                    satış, pazarlama, bilgilendirme, promosyonlar hakkında bilgi
+                                    verebilme, kampanya ve koşulları hakkında bilgi sağlama, anket,
+                                    müşteri memnuniyet araştırmalarını yapabilme, satın alma
+                                    işlemlerinizi sağlama hızlandırma, siparişlerinizi alma ve
+                                    teslim edebilme,
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Müşterilere
+                                    yönelik kampanyaların oluşturulması, çapraz satış yapılması,
+                                    hedef kitle belirlenmesi,
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Müşteri
+                                    hareketlerinin takip edilerek kullanıcı deneyimini arttırıcı
+                                    faaliyetlerin yürütülmesi ve alışveriş sitemize ait internet
+                                    sitesi ile mobil uygulamanın işleyişinin geliştirilmesi ve
+                                    müşteri ihtiyaçlarına göre kişiselleştirilmesi, doğrudan ve
+                                    doğrudan olmayan pazarlama, kişiye özel pazarlama ve yeniden
+                                    pazarlama faaliyetlerinin yürütülmesi, kişiye özel
+                                    segmentasyon, hedefleme, analiz ve şirket içi raporlama
+                                    faaliyetlerinin yürütülmesi, pazar araştırmaları,
+
+                                </span>
+
+                            </p>
+
+                        </li>
+
+                        <li>
+
+                            <p align="justify">
+
+                                <span times="" new="" roman",="" serif;"="">
+
+                                    Müşteri
+                                    memnuniyeti aktivitelerinin planlanması ve icrası ile müşteri
+                                    ilişkileri yönetimi süreçlerinin planlanması ve icrası
+                                    amaçlarıyla dahil olmak üzere dahil olmak üzere alışveriş
+                                    sitemizin ürün ve/veya hizmetlerinin satış ve pazarlama
+                                    süreçlerinin planlanması ve icrası, alışveriş sitemizin
+                                    sunduğu ürün ve/veya hizmetlere bağlılık oluşturulması
+                                    ve/veya arttırılması süreçlerinin planlanması ve icrası
+                                    kapsamında Müşteri’nin vereceği onayı doğrultusunda
+                                    işlenebilecek ve işbu Kişisel Verilerin Korunması Metnin’nde
+                                    belirtilen taraflarla paylaşılabilecektir.
+
+                                </span>
+
+                            </p>
+
+                        </li>
+                    </ul>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Alışveriş
+                            Sitemiz; online davranışsal reklamcılık ve pazarlama
+                            yapılabilmesi amacıyla siteye gelen kullanıcının üye olmasalar
+                            dahi sitedeki davranışlarını tarayıcıda bulunan bir cookie
+                            (çerez) ile ilişkilendirme ve görüntülenen sayfa sayısı,
+                            ziyaret süresi ve hedef tamamlama sayısı gibi metrikleri temel
+                            alan yeniden pazarlama listeleri tanımlama hakkını haizdir. Daha
+                            sonra bu kullanıcıya sitede ya da Görüntülü Reklam Ağı’ndaki
+                            diğer sitelerde, kullanıcıların ilgi alanlarına göre hedefe
+                            yönelik reklam içeriği gösterilebilir. Google AFS reklamlarının
+                            Alışveriş Sitemize yönlendirilmesi esnasında Google
+                            kullanıcıların tarayıcısına çerez yerleştirebilir veya
+                            bunlarda yer alan çerezleri okuyabilir veya bilgi toplamak amacı
+                            ile web işaretleri kullanabilir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <br>
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                4.
+                                Müşterilere Ait Kişisel Verilerin Aktarımı:
+
+                            </span>
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Müşterilere
+                            ait kişisel veriler, alışveriş sitemiz tarafından sunulan ürün
+                            ve hizmetlerden ilgili kişileri faydalandırmak için gerekli
+                            çalışmaların iş birimleri tarafından yapılması ve ilgili iş
+                            süreçlerinin yürütülmesi, alışveriş sitemiz tarafından
+                            yürütülen ticari faaliyetlerin gerçekleştirilmesi için ilgili
+                            iş birimleri tarafından gerekli çalışmaların yapılması ve
+                            buna bağlı iş süreçlerinin yürütülmesi, alışveriş
+                            sitemizin ticari ve/veya iş stratejilerinin planlanması ve icrası,
+                            alışveriş sitemizin ve alışveriş sitemiz ile iş ilişkisi
+                            içerisinde olan ilgili kişilerin hukuki, teknik ve ticari-iş
+                            güvenliğinin temini ile alışveriş sitemizin sunduğu ürün ve
+                            hizmetlerin ilgili kişilerin beğeni, kullanım alışkanlıkları
+                            ve ihtiyaçlarına göre özelleştirilerek ilgili kişilere
+                            önerilmesi ve tanıtılması için gerekli olan aktivitelerin
+                            planlanması ve icrası da dahil olmak üzere Kanun’un 8. ve 9.
+                            maddelerinde belirtilen kişisel veri işleme şartları ve amaçları
+                            çerçevesinde Şirket yetkilileri, iştiraklerimiz, iş
+                            ortaklarımız, tedarikçilerimiz, hissedarlarımız, kanunen yetkili
+                            kamu kurum ve kuruluşları ile özel kurumlar ile
+                            paylaşılabilecektir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Kullanıcının
+                            Ad ve İletişim Bilgileri, ödeme aşamasında onaylayacağı ödeme
+                            kuruluşu çerçeve sözleşmesi uyarınca ve 9 Ocak 2008 tarihli ve
+                            26751 sayılı Resmi Gazete’de yayımlanan Suç Gelirlerinin
+                            Aklanmasının ve Terörün Finansmanının Önlenmesine Dair
+                            Tedbirler Hakkında Yönetmelik uyarınca kimlik doğrulaması
+                            gerçekleştirilmesi amacıyla ödeme kuruluşlarıyla
+                            paylaşılabilecektir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Alışveriş
+                            Sitemiz, kişisel verileri yukarıda belirtilen amaçlar dahilinde,
+                            6698 sayılı Kanun’da öngörülen şartları sağlamak koşulu
+                            ile yurt içinde üçüncü kişilere aktarabileceği gibi yurt
+                            dışına da aktarabilecektir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <br>
+                    </p>
+                    <p>
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                5.
+                                Kişisel Verilerin Toplanma Yöntemi ve Hukuki Sebebi:
+
+                            </span>
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Kişisel
+                            veriler, müşterilerden elektronik ortamda toplanmaktadır. Yukarıda
+                            belirtilen hukuki sebeplerle toplanan kişisel veriler Kanun’un 5.
+                            ve 6. maddelerinde ve bu Kişisel Verilerin Korunması Metninde
+                            belirtilen amaçlarla işlenebilmekte ve aktarılabilmektedir.
+
+                        </span>
+
+                    </p>
+                    <p>
+
+                        <br>
+                    </p>
+                    <p>
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                6.
+                                Kişisel Verilerin Saklanma Süreleri
+
+                            </span>
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Alışveriş
+                            Sitemiz, ilgili kanunlarda ve mevzuatlarda öngörülmesi durumunda
+                            kişisel verileri bu mevzuatlarda belirtilen süre boyunca
+                            saklamaktadır.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Kişisel
+                            verilerin ne kadar süre boyunca saklanması gerektiğine ilişkin
+                            mevzuatta bir süre düzenlenmemişse, Kişisel Veriler Alışveriş
+                            Sitemiz’in o veriyi işlerken yürütülen faaliyet ile bağlı
+                            olarak Alışveriş Sitemiz’in uygulamaları ve ticari yaşamının
+                            teamülleri uyarınca işlenmesini gerektiren süre kadar işlenmekte
+                            daha sonra silinmekte, yok edilmekte veya anonim hale
+                            getirilmektedir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Kişisel
+                            verilerin işlenme amacı sona ermiş; ilgili mevzuat ve Alışveriş
+                            Sitemiz’in belirlediği saklama sürelerinin de sonuna gelinmişse;
+                            kişisel veriler yalnızca olası hukuki uyuşmazlıklarda delil
+                            teşkil etmesi veya kişisel veriye bağlı ilgili hakkın ileri
+                            sürülebilmesi veya savunmanın tesis edilmesi amacıyla
+                            saklanabilmektedir. Buradaki sürelerin tesisinde bahsi geçen hakkın
+                            ileri sürülebilmesine yönelik zaman aşımı süreleri ile zaman
+                            aşımı sürelerinin geçmesine rağmen daha önce aynı konularda
+                            Alışveriş Sitemiz’e yöneltilen taleplerdeki örnekler esas
+                            alınarak saklama süreleri belirlenmektedir. Bu durumda saklanan
+                            kişisel verilere herhangi bir başka amaçla erişilmemekte ve ancak
+                            ilgili hukuki uyuşmazlıkta kullanılması gerektiği zaman ilgili
+                            kişisel verilere erişim sağlanmaktadır. Burada da bahsi geçen
+                            süre sona erdikten sonra kişisel veriler silinmekte, yok edilmekte
+                            veya anonim hale getirilmektedir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify"><span times="" new="" roman",="" serif;"=""><span style="font-weight: bold;"></span></span></p>
+                    <p align="justify">&nbsp;</p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            <span style="font-weight: bold;">
+
+                                7.
+                                Kişisel Veri Sahibi Olarak Müşterilerin Hakları:
+
+                            </span>
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Kanun’un
+                            11. maddesi uyarınca veri sahipleri; (i) kendileri ile ilgili
+                            kişisel veri işlenip işlenmediğini öğrenme, (ii) kişisel
+                            verileri işlenmişse buna ilişkin bilgi talep etme, (iii) kişisel
+                            verilerin işlenme amacını ve bunların amacına uygun kullanılıp
+                            kullanılmadığını öğrenme, (iv) yurt içinde veya yurt dışında
+                            kişisel verilerin aktarıldığı üçüncü kişileri bilme, (v)
+                            kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde
+                            bunların düzeltilmesini isteme ve bu kapsamda yapılan işlemin
+                            kişisel verilerin aktarıldığı üçüncü kişilere
+                            bildirilmesini isteme, (vi) Kanun ve ilgili diğer kanun hükümlerine
+                            uygun olarak işlenmiş olmasına rağmen, işlenmesini gerektiren
+                            sebeplerin ortadan kalkması hâlinde kişisel verilerin silinmesini
+                            veya yok edilmesini isteme ve bu kapsamda yapılan işlemin kişisel
+                            verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,
+                            (vii) işlenen verilerin münhasıran otomatik sistemler vasıtasıyla
+                            analiz edilmesi suretiyle kişinin kendisi aleyhine bir sonucun
+                            ortaya çıkmasına itiraz etme ve (viii) kişisel verilerin kanuna
+                            aykırı olarak işlenmesi sebebiyle zarara uğraması hâlinde
+                            zararın giderilmesini talep etme haklarına sahiptir.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            Söz
+                            konusu hakların kullanımına ilişkin talepler, kişisel veri
+
+                            sahipleri Alışveriş Sitemiz Tarafından 6698 sayılı Kanun
+                            Kapsamında belirtilen yöntemlerle iletilebilecektir. Alışveriş
+                            sitemiz söz konusu talepleri değerlendirerek 30 gün içerisinde
+                            sonuçlandıracaktır.
+
+                        </span>
+
+                    </p>
+                    <p align="justify">
+
+                        <br>
+                    </p>
+                    <p align="justify">
+
+                        <span times="" new="" roman",="" serif;"="">
+
+                            İşbu
+                            form üzerinde yer verilen hususlar ile ilgili olarak, hukuki ve
+                            teknolojik gelişmeler doğrultusunda değişiklikler söz konusu
+                            olabilecektir.
+
+                        </span>
+
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+
+
+<script type="text/javascript">
+        function showMe (box) {
+
+            var chboxs = document.getElementsByName("c1");
+            var vis = "none";
+            for(var i=0;i<chboxs.length;i++) {
+                if(chboxs[i].checked){
+                 vis = "block";
+                    break;
+                }
+            }
+            document.getElementById(box).style.display = vis;
+        }
+    function checkBoxValidate(cb) {
+    for (j = 0; j < 8; j++) {
+    if (eval("document.comanda11.c1[" + j + "].checked") == true) {
+    document.comanda11.c1[j].checked = false;
+    if (j == cb) {
+    document.comanda11.c1[j].checked = true;
+             }
+          }
+       }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

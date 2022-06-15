@@ -1,0 +1,29 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<html>
+<head>
+</head>
+<body>
+    <form asp-controller="Categoria" asp-action="Update" name="formadd" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Ürün Ad</label>
+                    <input id="productName" class="form-control" type="text" asp-for="categoria.CategoryName" required />
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2">
+                        <button type="submit" id="btn1" class=" center-block btn btn-primary">Ürün Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

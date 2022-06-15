@@ -1,0 +1,53 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "ProductByWithListAttirbute";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <table class="table table-bordered">
+                    <b>Attirbute</b>
+                    <tr>
+                        <th></th>
+                        <th>Renk</th>
+                        <th>Beden</th>
+                        <th>Miktar</th>
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model.bodySizes)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@ProductListViewModel.ReturnColor(@item.ItemColorid)</td>
+                            <td>@item.BodyName</td>
+                            <td>@item.BodyCount</td>
+                            <td style="text-align:right">
+                                <a href="/Varyant/AttirbuteUpdate/@item.BodyID" class="btn btn-warning" style="margin-right:6px !important" title="Edit"><i class="fa fa-edit"></i></a>
+                                <form action="/Varyant/AttirbuteActive/" method="post" style="display:inline">
+                                    <input type="hidden" name="bodyid" value="@item.BodyID" />
+                                    <button type="submit" class="btn btn-danger js-sweetalert" onclick="myfunction()" title="Delete"><i class="fa fa-trash-o"></i></button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-controll">
+                  <a href="/Varyant/ToProductAttirbuteAdd/@Model.bodySizes[0].productid" class="btn btn-primary">Özellik Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+

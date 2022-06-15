@@ -1,0 +1,172 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "CartItemView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section class="breadcrumb-section set-bg" data-setbg="/templates/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Sepet </h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Shoping Cart Section Begin -->
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @if (Model.CartItems != null)
+                {
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Ürünler</th>
+                                    <th>Fiyat</th>
+                                    <th>Miktar</th>
+                                    <th>Tutar</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var cart in Model.CartItems)
+                                {
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            <img src="/images/@cart.Product.ImageUrl" alt="">
+                                            <h5>Vegetable’s Package</h5>
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            @cart.Product.Price
+                                        </td>
+                                        <td class="shoping__cart__quantity">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="text" value="1">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="shoping__cart__total">
+                                            @(@cart.Product.Price*@cart.Quantity) TL
+                                        </td>
+                                        <td class="shoping__cart__item__close">
+                                            <span class="icon_close"></span>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert-danger">Sepetiniz Boştur</div>
+                }
+
+            </div>
+        </div>
+        @if (Model.CartItems != null)
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="#" class="primary-btn cart-btn">Alışverişe Devam Et</a>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Toplam Tutar</h5>
+                        <ul>
+
+                            <li>Tutar <span>@OrderModel.totalprice</span></li>
+                        </ul>
+                        <a href="#" class="primary-btn">Ödeme</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
+
+
+
+
+
+
+@*
+    <div class="table-responsive cart_info">
+    @if (@Model == null)
+    {
+    <div class="alert-danger">Sepetiniz Boştur.</div>
+    }
+    else
+    {
+    <table class="table table-condensed">
+    <thead>
+    <tr class="cart_menu">
+    <td class="image">Resim</td>
+    <td class="description">Açıklama</td>
+    <td class="price">Fiyat</td>
+    <td class="quantity">Miktar</td>
+    <td class="total">Toplam</td>
+    <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.CartItems)
+    {
+    <tr>
+    <td class="cart_product">
+    <a href=""><img src="~/images/@item.Product.ImageUrl" alt=""></a>
+    </td>
+    <td class="cart_description">
+    <h4>@item.Product.ProductName</h4>
+    </td>
+    <td class="cart_price">
+    <p>@item.Product.Price TL</p>
+    </td>
+    <td class="cart_quantity">
+    <div class="cart_quantity_button">
+    <a class="cart_quantity_up" href=""> + </a>
+    <input class="cart_quantity_input" type="text" name="quantity" value="@item.Quantity" autocomplete="off" size="2">
+    <a class="cart_quantity_down" href=""> - </a>
+    </div>
+    </td>
+    <td class="cart_total">
+    <p class="cart_total_price">@OrderModel.PriceTotal(@item.Product.Price,@item.Quantity) TL</p>
+    </td>
+    <td class="cart_delete">
+    <form asp-controller="Cart" asp-action="DeleteCartItem" method="post">
+    <input type="hidden" name="productid" value="@item.Product.ProductID">
+    <button class="btn danger btn-sm">
+    <i class="fa fa-times fa-fw"></i>
+    </button>
+    </form>
+    </td>
+    </tr>
+    }
+    </tbody>
+    </table>
+
+    }
+    <a href="/Product/ProductList" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Alışverişe Devam</a>
+    <a href="/Product/ProductList" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Alışverişe Devam</a>
+
+    </div>
+
+*@

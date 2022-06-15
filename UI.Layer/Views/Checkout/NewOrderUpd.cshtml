@@ -1,0 +1,44 @@
+﻿@using ETicaret.UILayer.Models.IdentityModels.MainLayoutModel
+@model AllLayoutModel
+@{
+    ViewData["Title"] = "NewOrderUpd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form asp-controller="Checkout" asp-action="NewOrderUpd" name="formadd" method="post">
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="form-control-3">Kargo Takip Numarası</label>
+                        <input id="unitPrice" class="form-control" asp-for="shipmens.Price" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="form-control-3">Kargo Takip Numarası</label>
+                        <input id="unitPrice" class="form-control" asp-for="shipmens.ReducedPrice" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="form-control-3">Kargo Takip Numarası</label>
+                        <input id="unitPrice" class="form-control" asp-for="shipmens.beden" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="form-control-3">Kargo Takip Numarası</label>
+                        <input id="unitPrice" class="form-control" asp-for="shipmens.CargoCode" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="form-control-3">Kargoda</label>
+                        <input id="unitPrice" class="form-control" type="checkbox" asp-for="shipmens.State" name="1" required />
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-10 offset-md-10">
+                            <button type="submit" id="btn1" class=" center-block btn btn-primary">Güncelle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+

@@ -1,0 +1,78 @@
+﻿@using ETicaret.UILayer.Models.IdentityModels.MainLayoutModel
+@using UI.Layer.Models.UserModel
+
+@model AllLayoutModel
+@{
+    ViewData["Title"] = "ProductImages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        #product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Resim</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListImages)
+                        {
+                            <tr>
+                                <th scope="row"></th>
+                                <td><img src="~/images/@item.Image" width="80" /></td>
+                                <td style="text-align:right;">
+                                    <a href="/MultipleImages/ImageUpdate/@item.ImagesID" class="btn btn-warning btn-sm">Güncelle</a>
+                                    <form action="/MultipleImages/ImageDelete/" method="post" style="display:inline">
+                                        <input type="hidden" name="imageid" value="@item.ImagesID" />
+                                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @if (Model.ListImages.Count ==0 && Model.ListImages.Count <=3)
+            {
+                <div class="col-lg-5">
+                    <form asp-controller="MultipleImages" asp-action="ImageAdd" name="formadd" method="post" enctype="multipart/form-data">
+                        <div class="form-group-row">
+                            <label class="col-form-label">Seç</label>
+                            <div class="custom-file">
+                                <input type="file" name="file"/>
+                                <button type="submit" class="btn btn-danger btn-sm">Ekle</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            }
+            else if (Model.ListImages.Count > 0 && Model.ListImages.Count <= 3)
+            {
+                 <div class="col-lg-5">
+                    <form asp-controller="MultipleImages" asp-action="ImageAdd" name="formadd" method="post" enctype="multipart/form-data">
+                        <div class="form-group-row">
+                            <label class="col-form-label">Seç</label>
+                            <div class="custom-file">
+                                <input type="file" name="file"/>
+                                <button type="submit" class="btn btn-danger btn-sm">Ekle</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</section>

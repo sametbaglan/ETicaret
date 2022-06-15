@@ -1,0 +1,69 @@
+﻿@model AllLayoutModel
+@{
+    ViewData["Title"] = "GetByWithProductId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        #product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<section class="breadcrumb-section set-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Resim</th>
+                            <th scope="col">Ürün</th>
+                            <th scope="col">Stok</th>
+                            <th scope="col">Fiyat</th>
+                            <th scope="col">İndirim</th>
+                            <th scope="col">Açıklama</th>
+                            <th scope="col">Barcode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <th scope="row"></th>
+                                <td><img src="~/images/@item.ImageUrl" width="80" /></td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Stock</td>
+                                <td>@item.Price</td>
+                                @if (item.ReducedPrice == null)
+                                {
+                                    <td>Değer Yok</td>
+                                }
+                                else
+                                {
+                                    <td>@item.ReducedPrice</td>
+                                }
+                                <td>@item.Descriptions</td>
+                                <td>@item.Barcode</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

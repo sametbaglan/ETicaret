@@ -1,0 +1,177 @@
+﻿@using UI.Layer.Models.UserModel
+@model AllLayoutModel
+@{
+    ViewData["Title"] = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        #product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large"
+                             src="~/images/@Model.Product.ImageUrl" alt="">
+                    </div>
+                    <div class="product__details__pic__slider owl-carousel">
+                        @foreach (var item in Model.ListImages)
+                        {
+                            <img data-imgbigurl="/images/@item.Image"
+                             src="/images/@item.Image" alt="">
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>@Model.Product.ProductName</h3>
+                    @if (Model.Product.ReducedPrice > 0)
+                    {
+                        <div class="text-danger h1">
+                            <del class="h5">@Model.Product.Price TL</del>  <h4> @DiscountCalculation.percentileCalculation(@Model.Product.Price,@Model.Product.ReducedPrice) %</h4>
+                            <h3>@Model.Product.ReducedPrice TL</h3>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="product__details__price">@Model.Product.Price TL</div>
+                    }
+                    <p>
+                        @Model.Product.Descriptions
+                    </p>
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <input type="hidden" name="productid" value="@Model.Product.ProductID" />
+                                <div class="input-group mb-3">
+                                    <input type="number" min="1" name="quantity" value="1">
+                                    <button style="margin-left:15px; background:#252525;" type="submit" class="primary-btn">
+                                        <i class="fas fa-card-plus">Sepete At</i>
+                                    </button>
+                                </div>
+                                @if (ViewBag.Message != null)
+                                {
+                                    <div class="alert alert-success" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>@ViewBag.State</strong> @ViewBag.Message
+                                    </div>
+                                }
+                                @foreach (var clr in Model.ıtemColors)
+                                {
+                                    <b>
+                                        <br>
+                                        <label class="fancy-checkbox">
+                                            @clr.Color
+                                            <input class="checkbox-tick selectlist" type="radio" value="@clr.QuickID" id="checkbottom" name="color">
+                                            <span></span>
+                                        </label>
+                                        @foreach (var body in ProductListViewModel.tocolorbody(@clr.QuickID))
+                                        {
+                                            @if (body.BodyCount > 0)
+                                            {
+                                                <label class="fancy-checkbox" style="margin-left: 15px;">
+                                                    @body.BodyName (@body.BodyCount)
+                                                    <input class="checkbox-tick selectlist" type="radio" value="@body.BodyID" id="checkbottom" name="beden">
+                                                    <span></span>
+                                                </label>
+                                          
+                                            }
+                                        }
+                                    </b>
+                                }
+                            </form>
+                        </div>
+                    </div>
+                    @*   <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>*@
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <section class="product-details spad">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="product__details__tab">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                               aria-selected="true">Beden</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                               aria-selected="false">Renk</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                            <div class="product__details__tab__desc">
+                                                <h6>Beden</h6>
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Beden</th>
+                                                            <th>Miktar</th>
+                                                            <th>Renk</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var beden in Model.bodySizes)
+                                                        {
+                                                            <tr>
+                                                                <td></td>
+                                                                <td>@beden.BodyName</td>
+                                                                <td>@beden.BodyCount</td>
+                                                                <td>@ProductListViewModel.ReturnColor(beden.ItemColorid)</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                            <div class="product__details__tab__desc">
+                                                <h6>Renk</h6>
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Renk</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var renk in Model.ıtemColors)
+                                                        {
+                                                            <tr>
+                                                                <td>@renk.Color</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+         window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 3000);
+</script>
